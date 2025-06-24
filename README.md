@@ -58,8 +58,11 @@ Streamlit (para a interface web)
 
 Historico:
 
-1.1 Segunda versão
+1.1 Segunda versão 2025-06-24
+
     Corrigido horario mundial para time zone -3
+    Adicionado nome dinamico d arquivo com data e hora de criação
+    
 
 1.0 Primeira versão 2025-06-023
 
