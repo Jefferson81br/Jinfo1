@@ -1,5 +1,6 @@
 📦 Processador de Dados de Códigos de Barras
 Este projeto é um aplicativo web simples construído com Streamlit que permite processar arquivos de texto contendo códigos de barras e suas respectivas quantidades. Ele adiciona a data e hora do processamento a cada registro e organiza os dados resultantes por quantidade, facilitando a análise e o gerenciamento de inventário ou contagens.
+Feito para o padrao do sistema Alpha7 - sistema para farmácias presente em diverças redes.
 
 ✨ Funcionalidades
 Upload de Arquivo TXT: Permite o envio de arquivos de texto (.txt) contendo dados de códigos de barras.
@@ -61,7 +62,7 @@ Historico:
 1.1 Segunda versão 2025-06-24
 
     Corrigido horario mundial para time zone -3
-    Adicionado nome dinamico d arquivo com data e hora de criação
+    Adicionado nome dinamico do arquivo com data e hora de criação
     
 
 1.0 Primeira versão 2025-06-023
