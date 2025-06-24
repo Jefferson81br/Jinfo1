@@ -13,8 +13,6 @@ if uploaded_file:
     errors = []
 
     # Define o fuso horário para UTC-3 (ex: 'America/Sao_Paulo')
-    # Você pode escolher um fuso horário específico do Brasil que seja UTC-3
-    # ou criar um timezone fixo. 'America/Sao_Paulo' é um bom exemplo.
     brazil_tz = pytz.timezone('America/Sao_Paulo') 
 
     for line_num, line in enumerate(lines):
@@ -55,8 +53,8 @@ if uploaded_file:
         
         # String da hora RESUMIDA (para o nome do arquivo: HHMM)
         time_str_filename = now_utc_minus_3.strftime("%H%M") 
-        
-         result_lines = []
+
+        result_lines = []
         for item in sorted_data:
             # Usa a string da hora COMPLETA para o conteúdo do arquivo
             result_lines.append(f"{date_str},{time_str_content},{item['code']},{item['quantity']}")
