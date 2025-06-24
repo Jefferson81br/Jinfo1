@@ -1,7 +1,8 @@
 import streamlit as st
 from datetime import datetime
+import pytz # Importa a biblioteca pytz
 
-st.title("Processador de Dados de Códigos de Barras para Alpha7")
+st.title("Processador de Dados de Códigos de Barras")
 st.markdown("---")
 
 uploaded_file = st.file_uploader("Envie um arquivo .txt (formato: CODIGO,QUANTIDADE por linha)", type="txt")
@@ -10,6 +11,11 @@ if uploaded_file:
     lines = uploaded_file.read().decode("utf-8").splitlines()
     processed_data = []
     errors = []
+
+    # Define o fuso horário para UTC-3 (ex: 'America/Sao_Paulo')
+    # Você pode escolher um fuso horário específico do Brasil que seja UTC-3
+    # ou criar um timezone fixo. 'America/Sao_Paulo' é um bom exemplo.
+    brazil_tz = pytz.timezone('America/Sao_Paulo') 
 
     for line_num, line in enumerate(lines):
         stripped_line = line.strip()
@@ -38,9 +44,10 @@ if uploaded_file:
         # Ordena os dados pela quantidade (do menor para o maior)
         sorted_data = sorted(processed_data, key=lambda x: x['quantity'])
 
-        now = datetime.now()
-        date_str = now.strftime("%Y%m%d")
-        time_str = now.strftime("%H%M%S")
+        # Obtém a data e hora atual no fuso horário UTC-3
+        now_utc_minus_3 = datetime.now(brazil_tz)
+        date_str = now_utc_minus_3.strftime("%Y%m%d")
+        time_str = now_utc_minus_3.strftime("%H%M%S")
 
         result_lines = []
         for item in sorted_data:
