@@ -46,21 +46,32 @@ if uploaded_file:
 
         # Obtém a data e hora atual no fuso horário UTC-3
         now_utc_minus_3 = datetime.now(brazil_tz)
+        
+        # String da data (para conteúdo e nome do arquivo)
         date_str = now_utc_minus_3.strftime("%Y%m%d")
-        time_str = now_utc_minus_3.strftime("%H%M%S")
-
-        result_lines = []
+        
+        # String da hora COMPLETA (para o conteúdo do arquivo: HHMMSS)
+        time_str_content = now_utc_minus_3.strftime("%H%M%S")
+        
+        # String da hora RESUMIDA (para o nome do arquivo: HHMM)
+        time_str_filename = now_utc_minus_3.strftime("%H%M") 
+        
+         result_lines = []
         for item in sorted_data:
-            result_lines.append(f"{date_str},{time_str},{item['code']},{item['quantity']}")
+            # Usa a string da hora COMPLETA para o conteúdo do arquivo
+            result_lines.append(f"{date_str},{time_str_content},{item['code']},{item['quantity']}")
 
         result_text = "\n".join(result_lines)
 
         st.success("Dados processados com sucesso!")
         st.text_area("Resultado formatado:", result_text, height=300)
 
+        # Constrói o nome do arquivo dinamicamente usando a hora RESUMIDA
+        download_file_name = f"Dados_formatados_{date_str}_{time_str_filename}.txt"
+
         st.download_button(
             label="Baixar resultado formatado",
             data=result_text,
-            file_name="dados_formatados.txt",
+            file_name=download_file_name,
             mime="text/plain"
         )
