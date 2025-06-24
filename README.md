@@ -55,5 +55,14 @@ Você pode inspecionar os dados ou clicar no botão "Baixar resultado formatado"
 🛠️ Tecnologias Utilizadas
 Python
 Streamlit (para a interface web)
+
+Historico:
+
+1.1 Segunda versão
+    Corrigido horario mundial para time zone -3
+
+1.0 Primeira versão 2025-06-023
+
+
 👨‍💻 Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests se tiver sugestões de melhoria ou encontrar algum bug.
