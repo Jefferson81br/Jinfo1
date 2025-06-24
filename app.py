@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 import pytz # Importa a biblioteca pytz
 
-st.title("Processador de Dados de Códigos de Barras")
+st.title("Processador de Dados de Códigos de Barras Para ALpha7 V1.1")
 st.markdown("---")
 
 uploaded_file = st.file_uploader("Envie um arquivo .txt (formato: CODIGO,QUANTIDADE por linha)", type="txt")
