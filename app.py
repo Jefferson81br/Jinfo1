@@ -1,9 +1,15 @@
 import streamlit as st
 from datetime import datetime
-import pytz # Importa a biblioteca pytz
+import pytz
 
 st.title("Processador de Dados de Códigos de Barras Para Alpha7 V1.1")
 st.markdown("---")
+
+# Campo de seleção para o layout
+selected_layout = st.selectbox(
+    "Escolha o Layout de Saída:",
+    ("Layout 1", "Layout 2", "Layout 3", "Layout 4")
+)
 
 uploaded_file = st.file_uploader("Envie um arquivo .txt (formato: CODIGO,QUANTIDADE por linha)", type="txt")
 
@@ -12,13 +18,13 @@ if uploaded_file:
     processed_data = []
     errors = []
 
-    # Define o fuso horário para UTC-3 (ex: 'America/Sao_Paulo')
-    brazil_tz = pytz.timezone('America/Sao_Paulo') 
+    # Define o fuso horário para UTC-3
+    brazil_tz = pytz.timezone('America/Sao_Paulo')
 
     for line_num, line in enumerate(lines):
         stripped_line = line.strip()
         if not stripped_line:
-            continue # Ignora linhas vazias
+            continue
 
         parts = stripped_line.split(',')
         if len(parts) == 2:
@@ -55,17 +61,28 @@ if uploaded_file:
         time_str_filename = now_utc_minus_3.strftime("%H%M") 
 
         result_lines = []
+
+        # Lógica para formatação de acordo com o layout selecionado
         for item in sorted_data:
-            # Usa a string da hora COMPLETA para o conteúdo do arquivo
-            result_lines.append(f"{date_str},{time_str_content},{item['code']},{item['quantity']}")
+            line = f"{date_str},{time_str_content},{item['code']},{item['quantity']}"
+            
+            if selected_layout == "Layout 2":
+                line += ",Layout2"
+            elif selected_layout == "Layout 3":
+                line += ",Layout3"
+            elif selected_layout == "Layout 4":
+                line += ",Layout4"
+
+            result_lines.append(line)
 
         result_text = "\n".join(result_lines)
 
         st.success("Dados processados com sucesso!")
         st.text_area("Resultado formatado:", result_text, height=300)
 
-        # Constrói o nome do arquivo dinamicamente usando a hora RESUMIDA
-        download_file_name = f"Dados_formatados_{date_str}_{time_str_filename}.txt"
+        # Constrói o nome do arquivo dinamicamente com o layout escolhido
+        layout_short = selected_layout.replace(" ", "")
+        download_file_name = f"Dados_formatados_{layout_short}_{date_str}_{time_str_filename}.txt"
 
         st.download_button(
             label="Baixar resultado formatado",
