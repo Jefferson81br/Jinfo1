@@ -58,6 +58,10 @@ Python
 Streamlit (para a interface web)
 
 Historico:
+1.2 Terceira versão
+
+    Adicionado seleção de Layout para futuros modelos diferentes. 
+    
 
 1.1 Segunda versão 2025-06-24
 
