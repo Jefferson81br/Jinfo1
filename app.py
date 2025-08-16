@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 import pytz
 
-st.title("Processador de Dados de Códigos de Barras Para Alpha7 V1.1")
+st.title("Processador de Dados de Códigos de Barras Para Alpha7 V1.2")
 st.markdown("---")
 
 # Campo de seleção para o layout
@@ -90,4 +90,5 @@ if uploaded_file:
             file_name=download_file_name,
             mime="text/plain"
         )
+
 
