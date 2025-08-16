@@ -8,7 +8,7 @@ st.markdown("---")
 # Campo de seleção para o layout
 selected_layout = st.selectbox(
     "Escolha o Layout de Saída:",
-    ("Layout 1", "Layout 2", "Layout 3", "Layout 4")
+    ("Layout Alpha7", "Layout 2", "Layout 3", "Layout 4")
 )
 
 uploaded_file = st.file_uploader("Envie um arquivo .txt (formato: CODIGO,QUANTIDADE por linha)", type="txt")
@@ -90,3 +90,4 @@ if uploaded_file:
             file_name=download_file_name,
             mime="text/plain"
         )
+
